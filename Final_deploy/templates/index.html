@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+    <head>
+        <meta charset="UTF-8">
+        <title>360DigitMG Project</title>
+
+        <style>
+        h1{
+            text-align: center;
+            color: rgba(245, 46, 11, 0.986);
+            border: 2xp solid black;            
+        }
+        h1:hover{
+            color: rgb(37, 81, 163);
+        }
+        table[id="input"] td{
+            text-align: center;
+            padding: 5px;
+            width: 300px;
+            font-size: 20px;
+            color: rgb(44, 13, 219);
+            border: 1px solid black;
+            border-radius: 6px;
+            border-style: groove;
+            box-shadow: rgb(216, 131, 21);
+
+
+        }
+        table[id="input"]{            
+            border-radius: 4px;
+            margin-top: 50px;
+        }
+        body{
+            margin-top: 110px;
+            background-color: rgba(149, 199, 188, 0.438);
+            
+        }
+        button[type="Submit"]{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            block-size: 40px;        
+            font-size: 15px;
+            border-radius: 6px;
+            border-style: groove;
+            box-shadow: rgb(216, 131, 21);
+            background-color: black;
+            color:rgb(222, 232, 233);
+    
+        }
+        .variableSpace{
+            text-align: left;
+            margin-left: -3cm;
+            margin-right: 3cm;
+            color: rgb(51, 6, 250);
+        }
+        input[type]{
+            color: black;
+            border-radius: 3px;
+            border-style: groove;
+            box-shadow: rgb(216, 131, 21);
+            background-color: rgb(241, 203, 188);
+            box-sizing: border-box;
+        }
+        table[id="rep"],td[class="project"],th{
+            text-align: left;
+            padding: 5px;
+            width: 350px;
+            margin-top: 45px;
+            font-size: 15px;
+        }
+        .indent{
+            margin-right: 0.5cm;
+            color: rgb(51, 6, 250);
+
+        }
+        table[id="rep"] td{
+            font-style: italic;
+        }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="login">
+            <h1>Pharma Sales Forecasting</h1>
+
+            <!-- Main Input For Receiving Query to our ML -->
+            <center>
+                <form action="{{ url_for('predict')}}"method="post">
+                    <table id="input">
+                        <tr>
+                            <td><label for="airTemp">Start Date</label></td>
+                            <td><span class="variableSpace">:-</span><input type="text" id="airTemp" name="start_date" placeholder="YYYY-MM-DD" required="required" /></td>                        
+                        </tr>
+                        <tr>
+                            <td><label for="processTemp">Period</label></td>
+                            <td><span class="variableSpace">:-</span><input type="text" id="processTemp" name="period" placeholder="Integer (7, 14, etc.)" required="required" /></td>                        
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button type="submit" class="btn btn-primary btn-block btn-large">Predict</button></td>
+                        </tr>
+                        <table>
+                        <pre>Note: Enter Period in Multiple of 7. For Example, 7, 14, 21, etc.</pre>
+
+                        <tr>
+                            <td colspan="2"><span class="variable">{{ prediction_text }}</span></td>
+                        </tr>
+                        </table>             
+                    
+                    </table>
+                </form>                
+            </center>
+           
+        </div>
+    </body>
+</html>
